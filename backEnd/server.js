@@ -2,17 +2,18 @@ import dotenv from 'dotenv';
 dotenv.config();
 import session from 'express-session';
 import cors from 'cors';
-
 import express from 'express';
 import router from './router.js';
+
 
 const PORT = process.env.PORT;
 const app = express();
 
-/* CORS policy */
 app.use(cors({
 	origin: 'http://arthurpiau.ide.3wa.io:9000',
+    credentials: true, 
 }));
+
 
 app.use(session({
 	secret: process.env.SESSION_SECRET,

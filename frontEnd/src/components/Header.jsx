@@ -1,21 +1,47 @@
 import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import LogOut from "../components/LogOut.jsx"
 
 const Header = () => {
-    return(
+    const [userRole, setUserRole] = useState('');
+    const [userLoggedIn, setUserLoggedIn] = useState();
+    
+    useEffect(() => {
+        // !! : sert pour convertir en booléen (undefined => false, <> undefined => true)
+        setUserLoggedIn(!!sessionStorage.getItem('isLogged'));
+    }, []);
+    return (
         <header>
             <div className="headerDiv">
-                <div>
+            <div className="headerDivDiv">
+                <div className="headerDivButton">
                     <button id="dark-mode-toggle">Toggle Dark Mode</button>
-                </div>
-                <div>
-                    <NavLink to='/'><img id="headerLogo" src="https://img.pikbest.com/png-images/mordan-agriculture-vector-logo-design_5521578.png!f305cw" alt="Logo Entreprise to Home"/></NavLink>
-                </div>
-                <div>
-                    <NavLink to='/signup'><button id="signUp">Sign Up</button></NavLink>
-                    <NavLink to='/login'><button id="login">Log in</button></NavLink>
+                    {userRole === "admin" && (
+                        <button className="adminButton">Users List</button>
+                    )}
+                    {userLoggedIn ? (
+                         <NavLink to="/logout">
+                            <button id="logout">Log Out</button>
+                        </NavLink>
+                    ) : (
+                    <>
+                        <NavLink to="/signup">
+                                <button id="signUp">Sign Up</button>
+                            </NavLink>
+                            <NavLink to="/login">
+                                <button id="login">Log in</button>
+                            </NavLink>
+                      </>       
+                    )}
+                    </div>
+                    <div>
+                        <NavLink to='/'>
+                            <img id="headerLogo" src="./pictures/logo.png" alt="Logo Entreprise to Home" tabIndex="0" role="link" />
+                        </NavLink>
+                    </div>
                 </div>
             </div>
-            <h1>Growing A Greener Future Together</h1>
+            <h1 className="italic">Growing A Greener Future Together</h1>
             <nav>
                 <ul>
                     <li><NavLink to='/about'>About Us</NavLink></li>
@@ -27,4 +53,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default Header;

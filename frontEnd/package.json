@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "private": true,
+  "proxy": "http://arthurpiau.ide.3wa.io:9000",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

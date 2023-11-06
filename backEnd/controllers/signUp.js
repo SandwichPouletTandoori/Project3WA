@@ -5,6 +5,12 @@ import xss from 'xss';
 
 const SignUp = (req, res) => {
  
+    const { name, surname, username, password } = req.body;
+
+    if (!name || !surname || !username || !password) {
+        return res.status(400).json({ error: 'Tous les champs sont obligatoires.' });
+        }
+ 
     bcrypt.hash(req.body.password, 10, (error, hash) => {
         if (error) {
             console.error(error);
@@ -15,16 +21,16 @@ const SignUp = (req, res) => {
         }
         
         const user = {
-            id: v4(),
-            name: xss(req.body.name),
-            surname: xss(req.body.surname),
-            username: xss(req.body.pseudo),
+            idUser: v4(),
+            name: xss(name),
+            surname: xss(surname),
+            username: xss(username),
             password: hash,
-            role: 'admin'
-        }
+            role: 'admin',
+            }; 
         query(
-            'INSERT INTO User (id, name, surname, username, password, role) VALUES (?, ?, ?, ?, ?, ?)',
-            [user.id, user.name, user.surname, user.username, user.password, user.role],
+            'INSERT INTO User (idUser, name, surname, username, password, role) VALUES (?, ?, ?, ?, ?, ?)',
+            [user.idUser, user.name, user.surname, user.username, user.password, user.role],
             (error, result) => {
                 if(error) {
                     console.error(error);
@@ -36,7 +42,7 @@ const SignUp = (req, res) => {
                 
                 res.status(201).json({
                     data: {
-                        id: user.id,
+                        id: user.idUser,
                         username: user.username,
                         role: user.role
                     }

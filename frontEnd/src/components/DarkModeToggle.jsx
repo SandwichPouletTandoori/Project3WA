@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 function DarkModeToggle() {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const localStorage = "http://arthurpiau.ide.3wa.io:9000/contact"
 
   useEffect(() => {
-    const storedDarkMode = localStorage.getItem('dark-mode') === 'enabled';
+    const storedDarkMode = window.localStorage.getItem('dark-mode') === 'enabled';
     setIsDarkMode(storedDarkMode);
 
     const darkModeToggle = document.getElementById('dark-mode-toggle');
@@ -15,7 +14,7 @@ function DarkModeToggle() {
       const newDarkMode = !isDarkMode;
       setIsDarkMode(newDarkMode);
       body.classList.toggle('dark-mode', newDarkMode);
-      localStorage.setItem('dark-mode', newDarkMode ? 'enabled' : 'disabled');
+      window.localStorage.setItem('dark-mode', newDarkMode ? 'enabled' : 'disabled');
     });
   }, [isDarkMode]);
 
