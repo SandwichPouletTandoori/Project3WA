@@ -22,14 +22,11 @@ app.use(session({
 	cookie: {maxAge: 3600000}
 }));
 
-//pour récupérer les informations du formulaire
-app.use(express.json()) // for parsing application/json
+app.use(express.json())
 app.use(express.urlencoded({ extended: true })) 
 
-//importation des routes
 app.use('/', router);
 
-// connexion du serveur au réseau
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });

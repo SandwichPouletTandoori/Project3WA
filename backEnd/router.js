@@ -4,10 +4,7 @@ import jwt from 'jsonwebtoken'
 const router = express.Router();
 
 import { Home } from "./controllers/home.js"
-import { Products } from "./controllers/products.js"
-import ProductsDelete from "./controllers/productsDelete.js"
-import ProductsAdd from "./controllers/productsAdd.js"
-import ProductUpdate from "./controllers/productUpdate.js"
+import { handleProducts, handleCreateProduct, handleModifyProduct, handleDeleteProduct } from "./controllers/products.js"
 import { Contact } from "./controllers/contact.js"
 import { About } from "./controllers/about.js"
 
@@ -23,14 +20,6 @@ import deleteUser from "./controllers/deleteUser.js";
 import addComment from "./controllers/addComment.js"
 import { Error404 } from "./controllers/error404.js"
 
-// const Home = require("./controllers/home.js");
-// const SignUp = require("./controllers/signUp.js");
-// const LogIn = require("./controllers/logIn.js");
-// const Products = require("./controllers/products.js");
-// const Contact = require("./controllers/contact.js");
-// const About = require("./controllers/about.js");
-// const Error404 = require("./controllers/error404.js");
-
 const checkAuthentication = (req, res, next) => {
     if(!req.session.role) {
       return res.status(401).send({
@@ -39,25 +28,6 @@ const checkAuthentication = (req, res, next) => {
     }
     next();
 }
-
-// function authenticateJWT(req, res, next) {
-//     const token = req.header('Authorization');
-    
-//     if (!token) {
-//         return res.status(401).json({ message: 'Authentication failed: No token provided' });
-//     }
-    
-//     /* token = 'Bearer xxxx' */
-//     jwt.verify(token.split(' ')[1], process.env.JWT_SECRET, (error, user) => {
-//         if (error) {
-//             return res.status(403).json({ message: 'Authentication failed: Invalid token' });
-//         }
-        
-//         req.user = user;
-        
-//         next();
-//     })
-// }
 
 router.use((req, res, next) => {
     res.locals.isLogged = req.session.isLogged;
@@ -73,11 +43,10 @@ router.get('/login', LogIn);
 router.post('/login', LogIn);
 router.get('/logout', LogOut);
 
-router.get('/products', Products);
-router.post('/products/add', ProductsAdd);
-// router.get('/products/:idProduct/update', ProductUpdate)
-router.post('/products/:idProduct/update', ProductUpdate)
-router.delete('/products/:idProduct', ProductsDelete);
+router.get('/products', handleProducts);
+router.post('/products/add', handleCreateProduct);
+router.post('/products/:idProduct/update', handleModifyProduct)
+router.delete('/products/:idProduct', handleDeleteProduct);
 
 
 router.get('/contact', Contact);

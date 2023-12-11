@@ -9,7 +9,7 @@ const LogOut = () => {
       const response = await fetch('http://arthurpiau.ide.3wa.io:9001/logout', {
         method: 'GET',
       });
-console.log(response.status) /* PROBLEM HERE, 200 instead of 204 */
+console.log(response.status)
       if (response.status === 204) {
         
         setUserData({ username: '', role: '' }); 
@@ -27,10 +27,10 @@ console.log(response.status) /* PROBLEM HERE, 200 instead of 204 */
   };
 
   return (
-    <div>
+    <main>
       <p>Click here to Log Out. Thank you for using our application.</p>
       <button onClick={handleLogout}>Log Out</button>
-    </div>
+    </main>
   );
 };
 

@@ -10,8 +10,8 @@ function About() {
   }, []);
   
     return(
-        <div id="divAbout">
-          <h2>About GreenHarvest Enterprises</h2>
+        <main id="mainAbout">
+          <h2 className="underline">About GreenHarvest Enterprises</h2>
           <p> Welcome to GreenHarvest Valley, birthplace of our own pride in dedicating ourselves into transforming the world of agriculture through innovation, sustainability, and, most importantly, quality. As we embark on this journey together, we 'd like to share with you our unwavering commitment to delivering the finest agricultural products to meet your needs.
 
             At GreenHarvest Enterprises, quality isn 't just a standard; it's our way of life. We understand that the success of your agricultural endeavors depends on the caliber of the products you choose, and we take that responsibility seriously. Here are many reasons why you can and should trust us:</p>
@@ -31,7 +31,7 @@ function About() {
           <p>Sincerely,</p>
           <p>Harvey Farmwell,</p>
           <p>CEO, GreenHarvest Enterprises</p> 
-        </div>
+        </main>
     )
 }
 

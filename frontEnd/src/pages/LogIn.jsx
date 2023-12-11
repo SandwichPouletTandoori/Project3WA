@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 const LogIn = () => {
   const navigate = useNavigate();
-  
-  // const [logIn, setLogIn] = useState(false);
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault();
     const formData = { username, password };
 
     fetch('http://arthurpiau.ide.3wa.io:9001/login', {
@@ -22,13 +21,9 @@ const LogIn = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.data) {
-          // If login is successful, set logIn to true
-          // setLogIn(true);
           sessionStorage.setItem('isLogged', 1);
           window.location.href = '/';
-          // navigate('/')
-          
-        } else {
+          } else {
         console.error('Login failed:', data.error);
       }
     })
@@ -38,7 +33,7 @@ const LogIn = () => {
 };
 
   return (
-    <>
+    <main>
       <h2>Connect With Us</h2>
       <h3>Login</h3>
       <form onSubmit={handleLogin}>
@@ -66,7 +61,7 @@ const LogIn = () => {
           <button type="submit">Login</button>
         </div>
       </form>
-    </>
+    </main>
   );
 }
 

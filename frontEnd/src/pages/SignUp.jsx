@@ -18,7 +18,6 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Send a POST request to your server with the registration data
     fetch('http://arthurpiau.ide.3wa.io:9001/signup', {
       method: 'POST',
       headers: {
@@ -28,22 +27,20 @@ const SignUp = () => {
     })
       .then((res) => {
         if (res.status === 201) {
-          // Registration successful
-          setMessage('Registration successful!'); // Display a success message
+          setMessage('Registration successful!');
         } else {
-          // Registration failed
-          setMessage('Registration failed. Please try again.'); // Display an error message
+          setMessage('Registration failed. Please try again.');
         }
       })
       .catch((error) => {
         console.error('Error:', error);
-        setMessage('Server error. Please try again later.'); // Display a server error message
+        setMessage('Server error. Please try again later.');
       });
   };
 
   return (
-    <>
-      <h2>Connect With Us</h2>
+    <main>
+      <h2>Connect With Us!</h2>
       <h3>Sign Up</h3>
       <form onSubmit={handleSubmit}>
         <div>
@@ -95,45 +92,8 @@ const SignUp = () => {
         </div>
       </form>
       {message && <div>{message}</div>}
-    </>
+    </main>
   );
 };
-
-// const SignUp = () => {
-//     const [signUp, setSignUp] = useState('');
-
-//   useEffect(() => {
-//     fetch('http://arthurpiau.ide.3wa.io:9001/signup')
-//       .then((res) => res.json())
-//       .then((data) => setSignUp(data));
-//   }, []);
-//     return(
-//         <>
-//             <h2>Connect With Us</h2>
-//             <h3>Sign Up !</h3>
-//     <form method="post">
-//         <div>
-//             <label htmlFor="name">Name</label>
-//             <input type="text" name="name" id="name" />     
-//         </div>
-//         <div>
-//             <label htmlFor="surname">Surname</label>
-//             <input type="text" name="surname" id="surname" />     
-//         </div>
-//         <div>
-//             <label htmlFor="username">Username</label>
-//             <input type="text" name="username" id="username" />     
-//         </div>
-//         <div>
-//             <label htmlFor="password">Password</label>
-//             <input type="password" name="password" id="password" />   
-//         </div>
-//         <div>
-//             <button type="submit">Sign Up</button>
-//         </div>
-//     </form>
-//         </>
-//     )
-// }
 
 export default SignUp

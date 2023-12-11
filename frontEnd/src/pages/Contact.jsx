@@ -38,28 +38,28 @@ const Contact = () => {
       });
   };
   
-    return( 
-        <>
-            <h2>Connect With Us</h2>
-            <h3>Our adress :</h3>
-            <p>The GreenHarvest Enterprises HQ is located at 123 Elm Street, Springfield, Anytown 12345, Fictionland</p>
-            <h3>Our email adress :</h3>
-            <p>You can contact us at greenharvestenterprises@green.com</p>
-            <h3>You can also leave a comment bellow and we'll take your comments in consideration :</h3>
-            <div id="commentSectionDiv">
-            <form>
-        <label><span className="italic">Leave us a comment!</span></label>
-        <textarea id="commentSection" name="commentsection" rows="20" cols="1" value={newComment} onChange={(e) => setNewComment(e.target.value)} />
-        <button onClick={handleSubmitComment}>Submit comment</button>
+  return( 
+    <main>
+      <h2 className="underline">Connect With Us</h2>
+      <h3>Our adress :</h3>
+      <p>The GreenHarvest Enterprises HQ is located at 123 Elm Street, Springfield, Anytown 12345, Fictionland</p>
+      <h3>Our email adress :</h3>
+      <p>You can contact us at greenharvestenterprises@green.com</p>
+      <h3>You can also leave a comment bellow and we'll take your comments in consideration :</h3>
+      <div id="commentSectionDiv">
+        <form>
+          <label><span className="italic">Leave us a comment!</span></label>
+          <textarea id="commentSection" name="commentsection" rows="20" cols="1" value={newComment} onChange={(e) => setNewComment(e.target.value)} />
+            <button onClick={handleSubmitComment}>Submit comment</button>
         </form>
         <div>{setDisplayText}</div>
       </div>
       <ul className="commentList">
-  {comments.map((comment, index) => (
-    <Comment key={index} text={comment.text} />
-  ))}
-</ul>
-    </>
+        {comments.map((comment, index) => (
+          <Comment key={index} text={comment.text} />
+          ))}
+      </ul>
+    </main>
   );
 };
 

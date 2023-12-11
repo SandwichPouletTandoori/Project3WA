@@ -1,8 +1,7 @@
-import Comment from '../controllers/addComment.js'; // Adjust the path to your Comment model
+import Comment from '../controllers/addComment.js';
 
 const Contact = async (req, res) => {
   if (req.method === 'GET') {
-    // Handle GET request to retrieve comments
     try {
       const allComments = await Comment.findAll();
       res.json(allComments);
@@ -10,7 +9,6 @@ const Contact = async (req, res) => {
       res.status(500).json({ error: 'Server error' });
     }
   } else if (req.method === 'POST') {
-    // Handle POST request to add a new comment
     const { text } = req.body;
 
     if (text) {

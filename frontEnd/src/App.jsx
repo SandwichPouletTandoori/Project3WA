@@ -5,8 +5,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "./pages/Home.jsx"
 import SignUp from "./pages/SignUp.jsx"
-import LogIn from "./components/LogIn.jsx"
-import LogOut from "./components/LogOut.jsx"
+import LogIn from "./pages/LogIn.jsx"
+import LogOut from "./pages/LogOut.jsx"
 import Products from "./pages/Products.jsx"
 import Contact from "./pages/Contact.jsx"
 import About from "./pages/About.jsx"
@@ -24,7 +24,7 @@ function App() {
 
   
   useEffect(() => {
-    const userLoggedIn = !!sessionStorage.getItem('isLogged');// Convertion en booléen (undefined => false, <> undefined => true)
+    const userLoggedIn = !!sessionStorage.getItem('isLogged');
     setUserLoggedIn(userLoggedIn);
   }, []);
   
