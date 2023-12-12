@@ -136,7 +136,6 @@ function Products() {
               <h3 className="productH3">{product.nameProduct}</h3>
               <img className="productPictures" src={product.imageProduct} alt={product.nameProduct} />
               <p className="productDescriptions">{product.descriptionProduct}</p>
-              {/* Delete Operation */}
               <button className="displayModify">Modify</button>
               <form className="productUpdate">
                 <label className="italic">Modify Product</label>
